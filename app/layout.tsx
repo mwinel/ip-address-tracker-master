@@ -21,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${rubik.className} antialiased text-[#2b2b2b]`}>
-        {children}
+        <main>
+          {children}
+        </main>
       </body>
     </html>
   );

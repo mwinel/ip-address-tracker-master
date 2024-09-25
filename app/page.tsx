@@ -70,9 +70,11 @@ export default function Home() {
       ></div>
       <div className="absolute top-10 left-1/2 transform -translate-x-1/2 z-10 w-full">
         <div className="flex flex-col items-center justify-center">
-          <h1 className="text-2xl sm:text-3xl font-medium text-white mb-2">
-            IP Address Tracker
-          </h1>
+          <header>
+            <h1 className="text-2xl sm:text-3xl font-medium text-white mb-2">
+              IP Address Tracker
+            </h1>
+          </header>
           <SearchBar onSearch={handleSearch} loading={loading} />
           {ipInfo && <IPInfoDisplay ipInfo={ipInfo} loading={loading} />}
         </div>

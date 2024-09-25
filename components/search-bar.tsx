@@ -20,7 +20,7 @@ export function SearchBar({ onSearch, loading }: SearchBarProps) {
   };
 
   return (
-    <div className="mt-4 flex">
+    <form onSubmit={(e) => { e.preventDefault(); handleSearch(); }} className="flex">
       <input
         type="text"
         placeholder="Search for any IP address or domain"
@@ -31,6 +31,7 @@ export function SearchBar({ onSearch, loading }: SearchBarProps) {
       />
       <button
         onClick={handleSearch}
+        aria-label={loading ? "Loading search" : "Search"}
         className={`bg-[#2b2b2b] text-white py-2.5 px-3 rounded-r-lg hover:bg-black ${
           loading || query.trim() === ""
             ? "cursor-not-allowed hover:bg-[#2b2b2b]"
@@ -44,6 +45,6 @@ export function SearchBar({ onSearch, loading }: SearchBarProps) {
           <ChevronRight size={20} />
         )}
       </button>
-    </div>
+    </form>
   );
 }
