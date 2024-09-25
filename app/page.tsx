@@ -13,6 +13,7 @@ import { IPInfoDisplay } from "@/components/ip-info-display";
 export default function Home() {
   const [ipInfo, setIpInfo] = useState<IPInfo | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [backgroundImage, setBackgroundImage] = useState<string>("");
 
   useEffect(() => {
     // Fetch user's IP and location data on page load
@@ -26,6 +27,24 @@ export default function Home() {
     };
 
     loadInitialIPInfo();
+  }, []);
+
+  useEffect(() => {
+    // Set background image based on window size
+    const updateBackgroundImage = () => {
+      setBackgroundImage(
+        window.innerWidth < 768
+          ? "url(/images/pattern-bg-mobile.png)"
+          : "url(/images/pattern-bg-desktop.png)"
+      );
+    };
+
+    updateBackgroundImage(); // Set initial background image
+    window.addEventListener("resize", updateBackgroundImage); // Update on resize
+
+    return () => {
+      window.removeEventListener("resize", updateBackgroundImage); // Cleanup
+    };
   }, []);
 
   const handleSearch = async (query: string) => {
@@ -47,12 +66,7 @@ export default function Home() {
     <div className="h-screen relative">
       <div
         className="h-80 sm:h-64 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            window.innerWidth < 768
-              ? "url(/images/pattern-bg-mobile.png)"
-              : "url(/images/pattern-bg-desktop.png)",
-        }}
+        style={{ backgroundImage }}
       ></div>
       <div className="absolute top-10 left-1/2 transform -translate-x-1/2 z-10 w-full">
         <div className="flex flex-col items-center justify-center">
