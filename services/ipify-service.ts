@@ -1,4 +1,3 @@
-// src/services/ipifyService.ts
 import axios from "axios";
 import { IPInfo } from "@/definitions";
 
